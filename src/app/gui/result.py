@@ -87,7 +87,13 @@ class Result:
         )
 
     def handle_continue(self):
-        return
+        self.current_gui = None
+        for widget in self.window.winfo_children():
+            widget.destroy()
+
+        from main_screen import MainHTR
+        self.main_gui = MainHTR(self.window)
+        self.current_gui = self.main_gui
     
     def handle_link(self):
         return

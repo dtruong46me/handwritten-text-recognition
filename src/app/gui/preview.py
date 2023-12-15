@@ -49,7 +49,7 @@ class Preview:
             image=self.img_submit,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.handle_submit,
+            command=self.handle_submit,
             relief="flat"
         )
         self.submit_btn.place(
@@ -108,10 +108,22 @@ class Preview:
         return
     
     def handle_submit(self):
-        return
+        self.current_gui = None
+        for widget in self.window.winfo_children():
+            widget.destroy()
+
+        from result import Result
+        self.result_gui = Result(self.window)
+        self.current_gui = self.result_gui
     
     def handle_delete(self):
-        return
+        self.current_gui = None
+        for widget in self.window.winfo_children():
+            widget.destroy()
+
+        from main_screen import MainHTR
+        self.main_screen = MainHTR(self.window)
+        self.current_gui = self.main_screen
         
     def relative_to_assets(self, path: str) -> Path:
         return self.assets_path / Path(path)

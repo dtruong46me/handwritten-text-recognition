@@ -51,7 +51,7 @@ class MainHTR:
             image=self.img_image,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.handle_upload,
+            command=self.handle_upload,
             relief="flat"
         )
         self.image_btn.place(
@@ -67,7 +67,7 @@ class MainHTR:
             image=self.img_upload,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.handle_upload,
+            command=self.handle_upload,
             relief="flat"
         )
         self.upload_btn.place(
@@ -83,7 +83,7 @@ class MainHTR:
             image=self.img_link,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.handle_link,
+            command=self.handle_link,
             relief="flat"
         )
         self.link_btn.place(
@@ -99,7 +99,7 @@ class MainHTR:
             image=self.img_submit,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.handle_submit,
+            command=self.handle_submit,
             relief="flat"
         )
         self.submit_btn.place(
@@ -132,7 +132,13 @@ class MainHTR:
         return
     
     def handle_submit(self):
-        return
+        self.current_gui = None
+        for widget in self.window.winfo_children():
+            widget.destroy()
+
+        from preview import Preview
+        self.preview_gui = Preview(self.window)
+        self.current_gui = self.preview_gui
         
     def relative_to_assets(self, path: str) -> Path:
         return self.assets_path / Path(path)
