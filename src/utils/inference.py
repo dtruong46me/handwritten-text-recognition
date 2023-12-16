@@ -37,6 +37,8 @@ def predict_image(modelpath: str, imagepath: str) -> str:
 
     print(generated_text)
 
+    return generated_text
+
 if __name__ == '__main__':
     PARENT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     
@@ -44,8 +46,9 @@ if __name__ == '__main__':
     MODEL_PATH = os.path.join(PARENT_DIR, "saved", MODEL)
     print(MODEL_PATH)
 
-    IMAGE = "1233.png"
+    IMAGE = "c04-110-01.jpg"
     IMAGE_PATH = os.path.join(PARENT_DIR, "test", IMAGE)
     print(IMAGE_PATH)
 
-    # text = predict_image()
+    text = predict_image(modelpath=MODEL_PATH, imagepath=IMAGE_PATH)
+    print(text)
