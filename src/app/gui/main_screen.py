@@ -206,7 +206,7 @@ class MainHTR:
 
             if len(str(self.absolute_path)) > 70:
                 self.shorten_path = str(self.absolute_path)[:20] + "..." + str(self.absolute_path)[-50:]
-                print(len(self.shorten_path))
+
             else:
                 self.shorten_path = str(self.absolute_path)
                 padding = int(73 - len(self.shorten_path)) // 2
@@ -229,11 +229,11 @@ class MainHTR:
         PARENT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         PARENT_PATH = os.path.join(PARENT_PATH, "..")
         sys.path.insert(0, PARENT_PATH)
-        # from utils.inference import predict_image
+        from utils.inference import predict_image
 
         # ## ============PREDICT IMAGE TEXT ============
-        generated_text = "none"
-        # generated_text = predict_image(imagepath=self.absolute_path)
+        generated_text = "Become success with a dise and hey presio! You're a star ... Rally sings as Uth"
+        generated_text = predict_image(imagepath=self.absolute_path)
 
         self.current_gui = None
         for widget in self.window.winfo_children():

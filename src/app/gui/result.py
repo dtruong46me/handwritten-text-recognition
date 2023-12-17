@@ -52,21 +52,38 @@ class Result:
             image=self.frame_right_img
         )
 
-        self.selected_image = PhotoImage(
-            file=image_path)
+        from PIL import Image, ImageTk
+
+        min_width, min_height = 240, 112
+        max_width, max_height = 540, 325
+
+        image_pil = Image.open(image_path)
+        width, height = image_pil.size
+        
+        if width > max_width and height < max_height:
+            new_width = max_width
+            new_height = int(height / width * new_width)
+            image_pil = image_pil.resize((new_width, new_height), Image.LANCZOS)
+        
+        if height > max_height and width < max_width:
+            new_height = max_height
+            new_width = int(width / height * new_height)
+            image_pil = image_pil.resize((new_width, new_height), Image.LANCZOS)
+
+        if width > max_width and height > max_height:
+            ratio = min(max_width/width, max_height/height)
+            image_pil = image_pil.resize((int(width*ratio), int(height*ratio)), Image.LANCZOS)
+
+        if width < min_width and height < min_height:
+            ratio = min(min_width / width, min_height / height)
+            image_pil = image_pil.resize((int(width*ratio), int(height*ratio)), Image.LANCZOS)
+
+        self.selected_image = ImageTk.PhotoImage(image_pil)
+
         self.predict_image = self.canvas.create_image(
             353.0,
             427.0,
             image=self.selected_image
-        )
-
-        self.canvas.create_text(
-            172.0,
-            532.0,
-            anchor="nw",
-            text=image_path,
-            fill="#435585",
-            font=("Consolas", 16 * -1)
         )
 
         self.canvas.create_text(
@@ -75,7 +92,8 @@ class Result:
             anchor="nw",
             text=predicted_text,
             fill="#363062",
-            font=("Consolas Bold", 32 * -1)
+            font=("Consolas Bold", 32 * -1),
+            width=390
         )
 
         self.title_text = PhotoImage(
