@@ -3,7 +3,7 @@ from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 class Result:
-    def __init__(self, window) -> None:
+    def __init__(self, window, image_path="C:\\User\\DELL", predicted_text="hello") -> None:
         self.parent_path = Path(__file__).parent
         self.assets_path = self.parent_path / Path(f"../assets")
 
@@ -52,13 +52,30 @@ class Result:
             image=self.frame_right_img
         )
 
+        self.selected_image = PhotoImage(
+            file=image_path)
+        self.predict_image = self.canvas.create_image(
+            353.0,
+            427.0,
+            image=self.selected_image
+        )
+
         self.canvas.create_text(
             172.0,
             532.0,
             anchor="nw",
-            text="C://Users/DELL/this/is/image/filepath.jpg",
+            text=image_path,
             fill="#435585",
             font=("Consolas", 16 * -1)
+        )
+
+        self.canvas.create_text(
+            723.0,
+            252.0,
+            anchor="nw",
+            text=predicted_text,
+            fill="#363062",
+            font=("Consolas Bold", 32 * -1)
         )
 
         self.title_text = PhotoImage(

@@ -93,10 +93,10 @@ class Preview:
         )
 
         self.canvas.create_text(
-            419.0,
+            269.0,
             532.0,
             anchor="nw",
-            text="C://Users/DELL/this/is/image/filepath.jpg",
+            text="C:/Users/DELL/...handwritten-text-recognition/src/test/c04-110-00.jpg",
             fill="#435585",
             font=("Consolas", 16 * -1)
         )

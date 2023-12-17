@@ -1,12 +1,18 @@
-from transformers import TrOCRProcessor, VisionEncoderDecoderModel
-from PIL import Image
 import os
-import torch
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+PARENT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    
+MODEL = "trOCR.pth"
+MODEL_PATH = os.path.join(PARENT_DIR, "saved", MODEL)
 
-def predict_image(modelpath: str, imagepath: str) -> str:
+def predict_image(modelpath=MODEL_PATH, imagepath="") -> str:
+    from transformers import TrOCRProcessor, VisionEncoderDecoderModel
+    from PIL import Image
+
+    import torch
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(device)
 
     processor = TrOCRProcessor.from_pretrained('microsoft/trocr-base-handwritten')
     model = VisionEncoderDecoderModel.from_pretrained('microsoft/trocr-base-stage1').to(device)
