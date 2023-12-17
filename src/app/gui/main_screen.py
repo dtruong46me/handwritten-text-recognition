@@ -206,8 +206,11 @@ class MainHTR:
 
             if len(str(self.absolute_path)) > 70:
                 self.shorten_path = str(self.absolute_path)[:20] + "..." + str(self.absolute_path)[-50:]
+                print(len(self.shorten_path))
             else:
                 self.shorten_path = str(self.absolute_path)
+                padding = int(73 - len(self.shorten_path)) // 2
+                self.shorten_path = str(" " * padding) + self.shorten_path
 
             self.imagepath_text = self.canvas.create_text(
                 269.0,
@@ -215,7 +218,8 @@ class MainHTR:
                 anchor="nw",
                 text=self.shorten_path,
                 fill="#435585",
-                font=("Consolas", 16 * -1)
+                font=("Consolas", 16 * -1),
+                justify="center"
             )
     
     def handle_link(self):
