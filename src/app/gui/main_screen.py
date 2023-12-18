@@ -229,7 +229,7 @@ class MainHTR:
         PARENT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         PARENT_PATH = os.path.join(PARENT_PATH, "..")
         sys.path.insert(0, PARENT_PATH)
-        from utils.inference import predict_image
+        from utils.predict import predict_image
 
         # ## ============PREDICT IMAGE TEXT ============
         generated_text = "Become success with a dise and hey presio! You're a star ... Rally sings as Uth"
