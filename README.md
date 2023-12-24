@@ -67,7 +67,7 @@ python main.py
 |Name|Student ID|Email|
 |-|-|-|
 |Vu Tuan Minh (C)|20210597|minh.vt210597@sis.hust.edu.vn|
-|Le Tuan Anh|2021xxxx|anh.lt21xxxx@sis.hust.edu.vn|
+|Le Tuan Anh|20214874|anh.lt214874@sis.hust.edu.vn|
 |Bui Minh Quang|20214925|quang.bn214925@sis.hust.edu.vn|
 |Dinh Nguyen Cong Quy|20214927|quy.dnc214927@sis.hust.edu.vn|
 |Phan Dinh Truong|20214937|truong.pd214937@sis.hust.edu.vn|
